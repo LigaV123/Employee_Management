@@ -81,8 +81,11 @@ namespace if_employee
         public EmployeeMonthlyReport[] GetMonthlyReport(DateTime periodStartDate, DateTime periodEndDate)
         {
             return _salaryService.GetMonthlyReports().Where(r =>
-                (r.Year >= periodStartDate.Year && r.Year <= periodEndDate.Year) &&
-                (r.Month >= periodStartDate.Month && r.Month <= periodEndDate.Month)).ToArray();
+                r.Year >= periodStartDate.Year && r.Year <= periodEndDate.Year 
+                && (periodStartDate.Month < periodEndDate.Month
+                    ? r.Month >= periodStartDate.Month && r.Month <= periodEndDate.Month
+                    : r.Month >= periodStartDate.Month && r.Month <= 12
+                       || r.Month >= 1 && r.Month <= periodEndDate.Month)).ToArray();
         }
 
         private EmployeeMonthlyReport GetEmployeeReport(int id, DateTime dateAndTime)

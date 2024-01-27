@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\if_employee\if_employee.csproj" />
+    <ProjectReference Include="..\EmployeeManagement\if_employee.csproj" />
   </ItemGroup>
 
 </Project>
